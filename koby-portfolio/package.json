@@ -1,7 +1,7 @@
 {
   "name": "koby-portfolio",
   "version": "0.1.0",
-  "homepage": "https://KobyFowler.github.io/koby-portfolio",
+  "homepage": "https://kobyfowler.github.io/portfolio/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
