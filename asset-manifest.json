@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/koby-portfolio/static/css/main.17ce9732.css",
+    "main.js": "/koby-portfolio/static/js/main.ed45a344.js",
+    "static/js/453.278f8926.chunk.js": "/koby-portfolio/static/js/453.278f8926.chunk.js",
+    "index.html": "/koby-portfolio/index.html",
+    "main.17ce9732.css.map": "/koby-portfolio/static/css/main.17ce9732.css.map",
+    "main.ed45a344.js.map": "/koby-portfolio/static/js/main.ed45a344.js.map",
+    "453.278f8926.chunk.js.map": "/koby-portfolio/static/js/453.278f8926.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17ce9732.css",
+    "static/js/main.ed45a344.js"
+  ]
+}
