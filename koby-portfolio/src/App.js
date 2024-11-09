@@ -18,6 +18,8 @@ import {
   ExternalLink
 } from 'lucide-react';
 import './animation.css';
+import ResumeViewer from './components/resumeViewer';
+
 
 
 // Running Figure Component
@@ -615,6 +617,18 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Resume Section */}
+      <section className="py-16 bg-white/50 backdrop-blur-lg">
+  <div className="container mx-auto px-6">
+    <SectionHeader icon={FileText} title="Resume" />
+    <Card hover>
+      <CardContent>
+        <ResumeViewer />
+      </CardContent>
+    </Card>
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="bg-gradient-to-br from-gray-800 to-gray-900 text-white py-12 relative overflow-hidden">
