@@ -461,7 +461,7 @@ const App = () => {
             <Card hover>
               <CardHeader className="border-l-4 border-blue-600">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                  <h3 className="text-xl font-semibold">Security Developer Intern - John Deere</h3>
+                  <h3 className="text-xl font-semibold">Software Developer - John Deere</h3>
                   <span className="text-gray-600 text-sm mt-1 sm:mt-0">2023</span>
                 </div>
               </CardHeader>
