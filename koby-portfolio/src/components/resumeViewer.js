@@ -1,3 +1,5 @@
+// In your resumeViewer.js component
+
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Download, Maximize2, Minimize2, Loader, FileText,
@@ -14,9 +16,25 @@ const EnhancedResumeViewer = () => {
   const [zoomLevel, setZoomLevel] = useState(100);
   const [showControls, setShowControls] = useState(true);
   
-  // Use refs for stable references
-  const iframeRef = useRef(null);
-  const pdfUrl = useRef(`${window.location.origin}/resume.pdf#view=FitH`);
+  // Create a ref for the PDF URL that works in both development and production
+  const pdfUrl = useRef(() => {
+    // For GitHub Pages, we need to handle the repository name in the URL
+    const isGitHubPages = window.location.hostname.includes('github.io');
+    
+    if (isGitHubPages) {
+      // Extract the repository name from the pathname
+      const pathSegments = window.location.pathname.split('/');
+      const repoName = pathSegments[1] || '';
+      
+      // If we're on GitHub Pages with a repo name in the URL
+      if (repoName) {
+        return `/${repoName}/resume.pdf#view=FitH`;
+      }
+    }
+    
+    // Default case (local development or direct domain)
+    return `/resume.pdf#view=FitH`;
+  }).current();
   
   // Handle fullscreen keyboard shortcuts
   useEffect(() => {
@@ -32,26 +50,6 @@ const EnhancedResumeViewer = () => {
 
   // Handle iframe load events
   const handleIframeLoad = () => {
-    // Check if we loaded the PDF or got redirected to the app
-    if (iframeRef.current) {
-      try {
-        // If we can access the contentDocument, it might be the app, not the PDF
-        // This may throw a cross-origin error if it's actually a PDF
-        const doc = iframeRef.current.contentDocument;
-        
-        // If we can see the document and it contains our app elements, it failed
-        if (doc && (doc.getElementById('root') || doc.querySelector('header'))) {
-          setLoadError(true);
-        } else {
-          setLoadError(false);
-        }
-      } catch (error) {
-        // A security error here often means the PDF loaded correctly
-        // (PDFs are often treated as cross-origin content)
-        setLoadError(false);
-      }
-    }
-    
     setIsLoading(false);
   };
   
@@ -69,7 +67,7 @@ const EnhancedResumeViewer = () => {
   };
 
   const handlePrint = () => {
-    window.open('/resume.pdf', '_blank');
+    window.open(pdfUrl, '_blank');
   };
 
   const handleShare = async () => {
@@ -77,13 +75,18 @@ const EnhancedResumeViewer = () => {
       await navigator.share({
         title: 'Koby Fowler Resume',
         text: 'Check out my professional resume',
-        url: '/resume.pdf'
+        url: pdfUrl
       });
     } catch (error) {
       console.log('Error sharing:', error);
       // Fallback for browsers that don't support sharing
-      window.open('/resume.pdf', '_blank');
+      window.open(pdfUrl, '_blank');
     }
+  };
+
+  // Use proper download links that work with GitHub Pages
+  const getDownloadLink = () => {
+    return pdfUrl;
   };
 
   // Display error view if PDF loading fails
@@ -109,7 +112,7 @@ const EnhancedResumeViewer = () => {
           
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="/resume.pdf"
+              href={getDownloadLink()}
               download="Koby_Fowler_Resume.pdf"
               className="inline-flex items-center px-6 py-3 bg-blue-500 text-white 
                        rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 
@@ -120,7 +123,7 @@ const EnhancedResumeViewer = () => {
             </a>
             
             <a
-              href="/resume.pdf"
+              href={getDownloadLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-6 py-3 bg-gray-700 text-white 
@@ -159,8 +162,7 @@ const EnhancedResumeViewer = () => {
         {/* Main Content */}
         <div className="relative w-full h-full">
           <object
-            ref={iframeRef}
-            data={pdfUrl.current}
+            data={pdfUrl}
             type="application/pdf"
             className={`w-full h-full transition-transform duration-300`}
             style={{ transform: `scale(${zoomLevel / 100})` }}
@@ -169,7 +171,7 @@ const EnhancedResumeViewer = () => {
           >
             <div className="w-full h-full flex items-center justify-center">
               <p className="text-gray-400">
-                Unable to display PDF. <a href="/resume.pdf" className="text-blue-400 underline">Download</a> instead.
+                Unable to display PDF. <a href={pdfUrl} className="text-blue-400 underline">Download</a> instead.
               </p>
             </div>
           </object>
@@ -268,7 +270,7 @@ const EnhancedResumeViewer = () => {
       {/* Download Options */}
       <div className="flex flex-wrap justify-center gap-4 mt-6">
         <a
-          href="/resume.pdf"
+          href={getDownloadLink()}
           download="Koby_Fowler_Resume.pdf"
           className="inline-flex items-center px-6 py-3 bg-blue-500 text-white 
                    rounded-full shadow-lg hover:bg-blue-600 transition-all duration-300 
@@ -278,7 +280,7 @@ const EnhancedResumeViewer = () => {
           Download PDF
         </a>
         <a
-          href="/resume.pdf"
+          href={getDownloadLink()}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center px-6 py-3 bg-gray-700 text-white 

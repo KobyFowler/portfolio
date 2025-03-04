@@ -28,6 +28,8 @@ import CharacterAnimation from './components/CharacterAnimation';
 const EnhancedHeroSection = React.lazy(() => import('./components/enhancedHeroSection'));
 const ParticleBackground = React.lazy(() => import('./components/ParticleBackground'));
 const EnhancedResumeViewer = React.memo(React.lazy(() => import('./components/resumeViewer')));
+const FallbackResumeViewer = React.memo(React.lazy(() => import('./components/fallbackResumeViewer')));
+
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -283,13 +285,8 @@ const App = () => {
     </AnimatedText>
     
     <ErrorBoundary>
-      <Suspense fallback={<div className="h-[800px] flex items-center justify-center bg-gray-800/30 rounded-xl">
-        <Loader className="w-12 h-12 text-blue-500 animate-spin" />
-      </div>}>
-        {/* Add a unique key to force remount if needed */}
-        <EnhancedResumeViewer key="resume-viewer-component" />
-      </Suspense>
-    </ErrorBoundary>
+  <FallbackResumeViewer />
+</ErrorBoundary>
   </div>
 </section>
 
