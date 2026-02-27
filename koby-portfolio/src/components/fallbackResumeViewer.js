@@ -22,7 +22,7 @@ const FallbackResumeViewer = () => {
     contact: {
       email: "kobymfowler@outlook.com",
       phone: "815-793-0818",
-      location: "Iowa",
+      location: "Illinois",
       github: "github.com/kobyfowler",
       linkedin: "linkedin.com/in/koby-fowler"
     },
