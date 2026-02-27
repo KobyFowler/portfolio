@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koby Fowler — Resume</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #1a1a2e;
+      --sub:    #3a3a5c;
+      --light:  #6b6b8a;
+      --rule:   #e2e2ec;
+      --accent: #CC0000;
+      --chip:   #f0f0f8;
+      --page:   #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 10.5pt;
+      color: var(--ink);
+      background: #d0d0e0;
+      line-height: 1.45;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ── Page wrapper ── */
+    .page {
+      max-width: 780px;
+      margin: 32px auto;
+      background: var(--page);
+      padding: 44px 50px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+      border-top: 5px solid var(--accent);
+    }
+
+    /* ── Header ── */
+    .header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 18px; }
+    .header-left h1 {
+      font-size: 26pt; font-weight: 800; letter-spacing: -0.5px;
+      color: var(--ink); line-height: 1;
+    }
+    .header-left .tagline {
+      font-size: 10pt; color: var(--sub); margin-top: 4px; letter-spacing: 0.02em;
+    }
+    .header-right { text-align: right; font-size: 9pt; color: var(--sub); line-height: 1.7; }
+    .header-right a { color: var(--accent); text-decoration: none; }
+    .header-right a:hover { text-decoration: underline; }
+
+    /* ── Section headings ── */
+    h2 {
+      font-size: 9.5pt; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      border-bottom: 1.5px solid var(--rule);
+      padding-bottom: 3px; margin-bottom: 10px; margin-top: 20px;
+    }
+
+    /* ── Summary ── */
+    .summary { font-size: 10pt; color: var(--sub); margin-bottom: 2px; }
+
+    /* ── Experience ── */
+    .job { margin-bottom: 14px; }
+    .job-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .job-title { font-weight: 700; font-size: 10.5pt; color: var(--ink); }
+    .job-co { font-weight: 600; font-size: 10pt; color: var(--sub); }
+    .job-date { font-size: 9pt; color: var(--light); white-space: nowrap; }
+    .job-meta { font-size: 9pt; color: var(--light); margin-bottom: 5px; }
+    ul.bullets { padding-left: 17px; margin-top: 4px; }
+    ul.bullets li { margin-bottom: 3px; font-size: 9.8pt; color: var(--sub); }
+    ul.bullets li strong { color: var(--ink); font-weight: 600; }
+
+    /* ── Projects ── */
+    .project { margin-bottom: 12px; }
+    .proj-header { display: flex; justify-content: space-between; align-items: baseline; }
+    .proj-name { font-weight: 700; font-size: 10.5pt; color: var(--ink); }
+    .proj-link { font-size: 9pt; color: var(--accent); text-decoration: none; }
+    .proj-link:hover { text-decoration: underline; }
+    .proj-desc { font-size: 9.8pt; color: var(--sub); margin: 3px 0 4px; }
+
+    /* ── Skill chips ── */
+    .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+    .chip {
+      background: var(--chip); color: var(--sub);
+      font-size: 8.5pt; font-weight: 600;
+      padding: 2px 8px; border-radius: 4px;
+      border: 1px solid var(--rule);
+    }
+
+    /* ── Education ── */
+    .edu { display: flex; justify-content: space-between; align-items: baseline; }
+    .edu-degree { font-weight: 700; font-size: 10.5pt; }
+    .edu-school { font-size: 10pt; color: var(--sub); margin-top: 1px; }
+    .edu-date { font-size: 9pt; color: var(--light); }
+
+    /* ── Two-column skills layout ── */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 30px; }
+    .skill-row { display: flex; flex-direction: column; }
+    .skill-label { font-size: 8.5pt; font-weight: 700; color: var(--sub); margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+    /* ── Print ── */
+    @media print {
+      body { background: white; }
+      .page { margin: 0; box-shadow: none; padding: 28px 36px; border-top: 4px solid var(--accent); }
+      a { color: var(--accent) !important; }
+      @page { margin: 0.6in 0.5in; size: letter; }
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 24px 20px; margin: 0; }
+      .header { flex-direction: column; gap: 10px; }
+      .header-right { text-align: left; }
+      .job-header, .proj-header, .edu { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Koby Fowler</h1>
+      <div class="tagline">Senior Software Engineer &nbsp;·&nbsp; Full-Stack &nbsp;·&nbsp; Cloud &nbsp;·&nbsp; Security</div>
+    </div>
+    <div class="header-right">
+      <a href="mailto:kobymfowler@outlook.com">kobymfowler@outlook.com</a><br>
+      815-793-0818<br>
+      <a href="https://linkedin.com/in/koby-fowler" target="_blank">linkedin.com/in/koby-fowler</a><br>
+       <a href="https://kobyfowler-git.github.io/portfolio" target="_blank">kobyfowler-git.github.io/portfolio</a><br>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <h2>Summary</h2>
+  <p class="summary">
+    Senior software engineer with 3+ years of full-stack, cloud infrastructure, and security engineering experience.
+    Specialises in scalable TypeScript/Node.js services, AWS cloud architecture, enterprise OAuth2/Okta integration,
+    and developer tooling. Proven track record delivering production systems across healthcare, agtech, and
+    enterprise SaaS. Passionate about open-source, observability, and security-first software design.
+  </p>
+
+  <!-- EXPERIENCE -->
+  <h2>Experience</h2>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Senior Software Engineer</span>
+      <span class="job-date">Oct 2024 — Present</span>
+    </div>
+    <div class="job-meta"><span class="job-co">Korio</span> &nbsp;·&nbsp; Remote</div>
+    <ul class="bullets">
+      <li>Architect and ship the core clinical intelligence platform, handling <strong>100k+ daily patient events</strong> across real-time data pipelines built on Node.js, TypeScript, and AWS.</li>
+      <li>Designed a <strong>zero-trust RBAC system</strong> with Okta federation, securing PHI access across 12 enterprise clinic tenants while maintaining sub-200 ms auth latency.</li>
+      <li>Reduced cloud spend <strong>38 %</strong> by re-engineering event ingestion with SQS batching, Lambda right-sizing, and DynamoDB on-demand provisioning.</li>
+      <li>Built an automated FHIR HL7 data normalisation layer (TypeScript) that cut onboarding time for new clinic integrations from 3 weeks to 3 days.</li>
+      <li>Lead code review culture and internal RFC process; mentored 2 junior engineers to independent project ownership within 6 months.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Full Stack Software Engineer</span>
+      <span class="job-date">May 2023 — Oct 2024</span>
+    </div>
+    <div class="job-meta"><span class="job-co">John Deere</span> &nbsp;·&nbsp; Urbandale, IA</div>
+    <ul class="bullets">
+      <li>Owned the Security Access Control (SAC) platform serving <strong>27,000+ internal users</strong> — a React/Node.js full-stack system managing role provisioning across 40 enterprise applications.</li>
+      <li>Integrated Okta Workflows and a custom OAuth 2.0 orchestration layer, eliminating 95 % of manual access-review tickets and reducing provisioning cycle time by 4×.</li>
+      <li>Drove migration of legacy PHP identity flows to a cloud-native Node.js microservice running on AWS ECS, improving p99 latency from 2.1 s to 340 ms.</li>
+      <li>Built internal developer CLI tooling (Node.js) for IAM role management, adopted by the platform team as the standard workflow across 6 product groups.</li>
+      <li>Received <em>Innovation Award</em> for autonomous access-review automation that saved an estimated <strong>1,200 engineering-hours per quarter</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">Teaching Assistant — Computer Engineering</span>
+      <span class="job-date">Aug 2022 — Dec 2024</span>
+    </div>
+    <div class="job-meta"><span class="job-co">Iowa State University</span> &nbsp;·&nbsp; Ames, IA</div>
+    <ul class="bullets">
+      <li>Conducted labs, graded projects, and held weekly office hours for 80+ students across embedded systems and digital design courses.</li>
+      <li>Developed new auto-grading scripts (Python) reducing rubric evaluation time by 60 %.</li>
+    </ul>
+  </div>
+
+  <div class="job">
+    <div class="job-header">
+      <span class="job-title">IT Systems Technician</span>
+      <span class="job-date">Dec 2021 — Dec 2022</span>
+    </div>
+    <div class="job-meta"><span class="job-co">Iowa State University — IT Services</span> &nbsp;·&nbsp; Ames, IA</div>
+    <ul class="bullets">
+      <li>Managed hardware provisioning, university network configurations, and AD account management for campus IT fleet of 3,000+ devices.</li>
+    </ul>
+  </div>
+
+  <!-- PROJECTS -->
+  <h2>Projects</h2>
+
+  <div class="project">
+    <div class="proj-header">
+      <span class="proj-name">HelixTrace — Open-Source Distributed Tracing Library</span>
+      <a class="proj-link" href="https://github.com/kobyfowler-git/helixTrace" target="_blank">github.com/kobyfowler-git/helixTrace</a>
+    </div>
+    <p class="proj-desc">
+      Zero-configuration, OpenTelemetry-compatible distributed tracing SDK for Node.js microservices.
+      Automatic context propagation, async request stitching, and pluggable exporters for Jaeger, Zipkin, and AWS X-Ray.
+      <strong>300+ GitHub stars</strong> · Published on npm.
+    </p>
+    <div class="chips">
+      <span class="chip">TypeScript</span><span class="chip">OpenTelemetry</span>
+      <span class="chip">Node.js</span><span class="chip">AWS X-Ray</span><span class="chip">npm</span>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="proj-header">
+      <span class="proj-name">VaultShield — Zero-Trust API Gateway</span>
+      <a class="proj-link" href="https://github.com/kobyfowler-git/vaultShield" target="_blank">github.com/kobyfowler-git/vaultShield</a>
+    </div>
+    <p class="proj-desc">
+      Self-hostable API gateway with mutual TLS, Ed25519 token signing, and zero-knowledge proof verification.
+      Supports per-route RBAC policies, token rotation, and real-time audit logs streamed to AWS CloudWatch.
+    </p>
+    <div class="chips">
+      <span class="chip">Go</span><span class="chip">Ed25519</span>
+      <span class="chip">mTLS</span><span class="chip">AWS CloudWatch</span><span class="chip">Docker</span>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="proj-header">
+      <span class="proj-name">CloudWatcher — Multi-Cloud Monitoring Dashboard</span>
+      <a class="proj-link" href="https://github.com/kobyfowler-git/cloudWatcher" target="_blank">github.com/kobyfowler-git/cloudWatcher</a>
+    </div>
+    <p class="proj-desc">
+      Unified observability dashboard aggregating metrics from AWS CloudWatch, Azure Monitor, and GCP Cloud Monitoring.
+      React frontend, Node.js aggregation service, serverless Lambda polling workers, and WebSocket live push.
+    </p>
+    <div class="chips">
+      <span class="chip">React</span><span class="chip">Node.js</span>
+      <span class="chip">AWS Lambda</span><span class="chip">Azure SDK</span><span class="chip">WebSocket</span>
+    </div>
+  </div>
+
+  <div class="project">
+    <div class="proj-header">
+      <span class="proj-name">KobyDex Portfolio — Interactive Pokédex SPA</span>
+      <a class="proj-link" href="https://kobyfowler-git.github.io/portfolio" target="_blank">kobyfowler-git.github.io/portfolio</a>
+    </div>
+    <p class="proj-desc">
+      Personal portfolio built as a fully interactive Pokédex (Gen 4/5 DS era aesthetic).
+      Features pixel-art sprites, boot sequence, Professor Oak intro, and a D-pad–navigable five-section app — all in vanilla React + CSS.
+    </p>
+    <div class="chips">
+      <span class="chip">React 18</span><span class="chip">CSS Animations</span>
+      <span class="chip">Pixel Art</span><span class="chip">GitHub Pages</span>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <h2>Education</h2>
+  <div class="edu">
+    <div>
+      <div class="edu-degree">B.S. Computer Engineering</div>
+      <div class="edu-school">Iowa State University — Ames, IA</div>
+    </div>
+    <div class="edu-date">Graduated Dec 2024</div>
+  </div>
+
+  <!-- SKILLS -->
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-row">
+      <div class="skill-label">Languages</div>
+      <div class="chips">
+        <span class="chip">TypeScript</span><span class="chip">JavaScript</span>
+        <span class="chip">Python</span><span class="chip">Go</span>
+        <span class="chip">SQL</span><span class="chip">Bash</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Cloud &amp; Infra</div>
+      <div class="chips">
+        <span class="chip">AWS (EC2, Lambda, S3, RDS, SQS, VPC, IAM, CloudWatch)</span>
+        <span class="chip">Azure</span><span class="chip">Docker</span><span class="chip">Terraform</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Backend</div>
+      <div class="chips">
+        <span class="chip">Node.js</span><span class="chip">Express</span>
+        <span class="chip">REST</span><span class="chip">GraphQL</span>
+        <span class="chip">Microservices</span><span class="chip">WebSocket</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Security</div>
+      <div class="chips">
+        <span class="chip">OAuth 2.0</span><span class="chip">Okta</span>
+        <span class="chip">RBAC</span><span class="chip">JWT</span>
+        <span class="chip">mTLS</span><span class="chip">FHIR / PHI compliance</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Frontend</div>
+      <div class="chips">
+        <span class="chip">React</span><span class="chip">Next.js</span>
+        <span class="chip">Tailwind CSS</span><span class="chip">HTML5</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Databases</div>
+      <div class="chips">
+        <span class="chip">PostgreSQL</span><span class="chip">MySQL</span>
+        <span class="chip">DynamoDB</span><span class="chip">MongoDB</span>
+        <span class="chip">Redis</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">DevOps &amp; Tools</div>
+      <div class="chips">
+        <span class="chip">GitHub Actions</span><span class="chip">Jenkins</span>
+        <span class="chip">CI/CD</span><span class="chip">Jest</span>
+        <span class="chip">OpenTelemetry</span>
+      </div>
+    </div>
+    <div class="skill-row">
+      <div class="skill-label">Certifications</div>
+      <div class="chips">
+        <span class="chip">AWS SAP (in progress)</span>
+        <span class="chip">AWS Cloud Practitioner</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
